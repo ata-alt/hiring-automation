@@ -17,6 +17,10 @@
             background: #f8f9fa;
             min-height: 100vh;
             color: #2c3e50;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         .top-bar {
@@ -34,11 +38,10 @@
             align-items: center;
         }
         
-        .logo-area {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        .logo-area img {
+            height: 50px;
+            width: auto;
+            display: block;
         }
         
         .timer {
@@ -49,6 +52,17 @@
             color: #1a2332;
             font-size: 14px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .timer.warning {
+            background: #dc3545;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
         }
         
         .container {
@@ -75,7 +89,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #2d5f5d 0%, #245a58  100%);
+            background: linear-gradient(90deg, #2d5f5d 0%, #245a58 100%);
         }
         
         .header h1 {
@@ -100,13 +114,17 @@
         
         .progress-fill {
             height: 100%;
-            background: #3498db;
+            background: #2d5f5d;
             width: 0%;
             transition: width 0.4s ease;
         }
         
         .content {
             padding: 50px 50px;
+        }
+        
+        .hidden {
+            display: none !important;
         }
         
         .section {
@@ -207,7 +225,7 @@
             outline: none;
             border-color: #2d5f5d;
             background: white;
-               box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.1);
+            box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.1);
         }
         
         .radio-group, .checkbox-group {
@@ -228,7 +246,7 @@
         }
         
         .option:hover {
-            border-color: #3498db;
+            border-color: #2d5f5d;
             background: #f0f7fc;
             transform: translateX(2px);
         }
@@ -284,7 +302,7 @@
         }
         
         .btn-primary:hover {
-            background: #2d5f5d;
+            background: #245a58;
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(45, 95, 93, 0.3);
         }
@@ -311,24 +329,209 @@
             font-size: 18px;
         }
         
-        .section-intro {
-            background: #f8f9fa;
-            padding: 25px;
-            border-left: 4px solid #3498db;
-            margin-bottom: 40px;
-            border-radius: 2px;
+        .warning-message {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
         }
         
-        .section-intro p {
-            color: #4a5568;
-            line-height: 1.7;
+        .no-copy-warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        
+        .registration-screen, .results-screen {
+            padding: 40px;
+        }
+        
+        .alert {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .alert h5 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .alert ul {
+            margin: 10px 0 0 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid #e8ecef;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #2d5f5d;
+            box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.1);
+        }
+        
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1a2332;
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-check-input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #2d5f5d;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
             font-size: 14px;
         }
-        .logo-area img {
-    height: 50px;
-    width: auto;
-    display: block;
-}
+        
+        .btn-lg {
+            padding: 16px 40px;
+            font-size: 15px;
+        }
+        
+        .w-100 {
+            width: 100%;
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner-border {
+            width: 4rem;
+            height: 4rem;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2d5f5d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .time-indicator {
+            font-size: 0.9em;
+            color: #6c757d;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+        
+        .header-stats {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2d5f5d;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .data-table thead {
+            background: #2d5f5d;
+            color: white;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #e8ecef;
+        }
+        
+        .data-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .data-table tbody tr:hover {
+            background: #f0f7fc;
+        }
+        
+        .data-table td:first-child {
+            font-weight: 500;
+            color: #1a2332;
+        }
         
         @media (max-width: 768px) {
             .content {
@@ -361,6 +564,11 @@
                 padding: 12px 28px;
                 font-size: 12px;
             }
+            
+            .header-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -368,154 +576,232 @@
     <div class="top-bar">
         <div class="top-bar-content">
             <div class="logo-area">
-    <img src="https://noondalton.com/wp-content/uploads/2021/12/nd-logo-blue-globe-75h.png" alt="Noon Dalton">
-</div>
+                <img src="https://noondalton.com/wp-content/uploads/2021/12/nd-logo-blue-globe-75h.png" alt="Noon Dalton">
+            </div>
             <div class="timer" id="timer">Time: 00:00</div>
         </div>
     </div>
     
     <div class="container">
-        <div class="header">
-            <h1>Leadership Assessment</h1>
-            <p>Virtual Styling Operations Manager Position</p>
+        <!-- Registration Screen -->
+        <div id="registrationScreen" class="registration-screen">
+            <div class="header" style="margin: -40px -40px 30px -40px;">
+                <h1>Leadership Assessment</h1>
+                <p>Virtual Styling Operations Manager Position</p>
+            </div>
+            
+            <div class="alert alert-info">
+                <h5>Assessment Details</h5>
+                <ul>
+                    <li><strong>Duration:</strong> Approximately 90-120 minutes</li>
+                    <li><strong>Questions:</strong> 21 questions across 7 sections</li>
+                    <li><strong>Topics:</strong> Leadership, Project Management, Vendor Relations, Quality Assurance, Data Analysis, AI Integration, Documentation</li>
+                    <li><strong>Format:</strong> Mix of multiple choice and detailed written responses</li>
+                </ul>
+            </div>
+
+            <div class="alert alert-danger">
+                <h5>Important Rules</h5>
+                <ul>
+                    <li>Each question has a recommended time allocation shown in badges</li>
+                    <li>Copy/paste functionality is disabled</li>
+                    <li>Tab switching is monitored</li>
+                    <li>All answers are saved automatically</li>
+                    <li>You can navigate between sections using the Previous/Next buttons</li>
+                </ul>
+            </div>
+
+            <form id="registrationForm" onsubmit="startAssessment(event)">
+                <div class="mb-3">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" id="candidateName" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="candidateEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number (Optional)</label>
+                    <input type="tel" class="form-control" id="candidatePhone">
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms">
+                        I understand the assessment rules and agree to proceed
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    Start Assessment
+                </button>
+            </form>
         </div>
-        
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressBar"></div>
-        </div>
-        
-        <form id="assessmentForm" method="POST" action="process_assessment.php">
+
+        <!-- Assessment Screen -->
+        <div id="assessmentScreen" class="hidden">
+            <div class="header">
+                <h1>Leadership Assessment</h1>
+                <p>Virtual Styling Operations Manager Position</p>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+            
             <div class="content">
-                <!-- SECTION 1 -->
-                <div class="section active" data-section="1">
-                    <h2 class="section-title">Section 1: Leadership & Team Management</h2>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 1 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 8 min</span>
-                                <span class="meta-badge">📊 10 pts</span>
+                <div id="warningMessage" class="warning-message hidden">
+                    Warning: Tab switch detected! Please stay on this page.
+                </div>
+
+                <div class="no-copy-warning">
+                    Copy/Paste is disabled for this assessment
+                </div>
+
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="currentSection">1</div>
+                        <div class="stat-label">Current Section</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">7</div>
+                        <div class="stat-label">Total Sections</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="tabSwitchCounter">0</div>
+                        <div class="stat-label">Tab Switches</div>
+                    </div>
+                </div>
+
+                <form id="assessmentForm">
+                    <!-- SECTION 1 -->
+                    <div class="section active" data-section="1">
+                        <h2 class="section-title">Section 1: Leadership & Team Management</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 1 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 8 min</span>
+                                    <span class="meta-badge">📊 10 pts</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="question-text">You've inherited a distributed team of 15 virtual stylists (8 in-house, 7 outsourced across 3 time zones) with declining morale and inconsistent output quality. Recent feedback indicates confusion about priorities, limited communication from leadership, and frustration with unclear expectations.
+                            <div class="question-text">You've inherited a distributed team of 15 virtual stylists (8 in-house, 7 outsourced across 3 time zones) with declining morale and inconsistent output quality. Recent feedback indicates confusion about priorities, limited communication from leadership, and frustration with unclear expectations.
 
 Outline your 90-day action plan addressing:
 • Immediate steps to assess team dynamics (Days 1-30)
 • Strategies to rebuild trust and engagement (Days 31-60)
 • Long-term accountability frameworks (Days 61-90)</div>
-                        <div class="input-group">
-                            <textarea name="q1" required placeholder="Enter your comprehensive answer here..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 2 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 2 min</span>
-                                <span class="meta-badge">📊 2 pts</span>
+                            <div class="input-group">
+                                <textarea name="q1" required placeholder="Enter your comprehensive answer here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">You need to scale your outsourced styling team from 10 to 30 members within 8 weeks to meet Q4 demand. Which approach would be MOST effective?</div>
-                        <div class="input-group">
-                            <div class="radio-group">
-                                <div class="option">
-                                    <input type="radio" id="q2a" name="q2" value="A" required>
-                                    <label for="q2a">Hire all 20 new members simultaneously and conduct group onboarding sessions to save time</label>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 2 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 2 min</span>
+                                    <span class="meta-badge">📊 2 pts</span>
                                 </div>
-                                <div class="option">
-                                    <input type="radio" id="q2b" name="q2" value="B">
-                                    <label for="q2b">Implement a phased hiring approach with cohorts of 5-7, using top performers from earlier cohorts as mentors for new hires</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q2c" name="q2" value="C">
-                                    <label for="q2c">Outsource the entire hiring process to the 3PL vendor and review candidates only after they've completed training</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q2d" name="q2" value="D">
-                                    <label for="q2d">Prioritize speed over cultural fit, then address performance issues through performance improvement plans later</label>
+                            </div>
+                            <div class="question-text">You need to scale your outsourced styling team from 10 to 30 members within 8 weeks to meet Q4 demand. Which approach would be MOST effective?</div>
+                            <div class="input-group">
+                                <div class="radio-group">
+                                    <div class="option">
+                                        <input type="radio" id="q2a" name="q2" value="A" required>
+                                        <label for="q2a">Hire all 20 new members simultaneously and conduct group onboarding sessions to save time</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q2b" name="q2" value="B">
+                                        <label for="q2b">Implement a phased hiring approach with cohorts of 5-7, using top performers from earlier cohorts as mentors for new hires</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q2c" name="q2" value="C">
+                                        <label for="q2c">Outsource the entire hiring process to the 3PL vendor and review candidates only after they've completed training</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q2d" name="q2" value="D">
+                                        <label for="q2d">Prioritize speed over cultural fit, then address performance issues through performance improvement plans later</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 3 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 6 min</span>
-                                <span class="meta-badge">📊 8 pts</span>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 3 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 6 min</span>
+                                    <span class="meta-badge">📊 8 pts</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="question-text">Describe a specific accountability framework you would implement for a team of 20+ image quality specialists working across multiple vendors. Include:
+                            <div class="question-text">Describe a specific accountability framework you would implement for a team of 20+ image quality specialists working across multiple vendors. Include:
 • Key performance indicators (KPIs) you would track
 • Frequency and format of performance reviews
 • How you would address underperformance while maintaining team morale</div>
-                        <div class="input-group">
-                            <textarea name="q3" required placeholder="Enter your answer here..."></textarea>
+                            <div class="input-group">
+                                <textarea name="q3" required placeholder="Enter your answer here..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 4 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 1 min</span>
+                                    <span class="meta-badge">📊 2 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Your top-performing stylist (responsible for 30% of weekly output) submits resignation citing burnout and lack of career growth. What is your FIRST priority?</div>
+                            <div class="input-group">
+                                <div class="radio-group">
+                                    <div class="option">
+                                        <input type="radio" id="q4a" name="q4" value="A" required>
+                                        <label for="q4a">Immediately begin recruiting a replacement to avoid production disruption</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q4b" name="q4" value="B">
+                                        <label for="q4b">Schedule an exit interview and retention conversation to understand root causes and explore solutions</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q4c" name="q4" value="C">
+                                        <label for="q4c">Redistribute their workload among remaining team members and adjust timelines</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q4d" name="q4" value="D">
+                                        <label for="q4d">Escalate to senior leadership to approve a counter-offer with increased compensation</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 5 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 4 min</span>
+                                    <span class="meta-badge">📊 5 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">You discover significant performance disparities between your in-house team (95% quality acceptance rate) and your primary outsourced partner (73% acceptance rate). How would you approach this situation? Address both short-term corrections and long-term systemic improvements.</div>
+                            <div class="input-group">
+                                <textarea name="q5" required placeholder="Enter your answer here..."></textarea>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 4 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 1 min</span>
-                                <span class="meta-badge">📊 2 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">Your top-performing stylist (responsible for 30% of weekly output) submits resignation citing burnout and lack of career growth. What is your FIRST priority?</div>
-                        <div class="input-group">
-                            <div class="radio-group">
-                                <div class="option">
-                                    <input type="radio" id="q4a" name="q4" value="A" required>
-                                    <label for="q4a">Immediately begin recruiting a replacement to avoid production disruption</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q4b" name="q4" value="B">
-                                    <label for="q4b">Schedule an exit interview and retention conversation to understand root causes and explore solutions</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q4c" name="q4" value="C">
-                                    <label for="q4c">Redistribute their workload among remaining team members and adjust timelines</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q4d" name="q4" value="D">
-                                    <label for="q4d">Escalate to senior leadership to approve a counter-offer with increased compensation</label>
+                    <!-- SECTION 2 -->
+                    <div class="section" data-section="2">
+                        <h2 class="section-title">Section 2: Project & Workflow Management</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 6 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 15 min</span>
+                                    <span class="meta-badge">📊 15 pts</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 5 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 4 min</span>
-                                <span class="meta-badge">📊 5 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">You discover significant performance disparities between your in-house team (95% quality acceptance rate) and your primary outsourced partner (73% acceptance rate). How would you approach this situation? Address both short-term corrections and long-term systemic improvements.</div>
-                        <div class="input-group">
-                            <textarea name="q5" required placeholder="Enter your answer here..."></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SECTION 2 -->
-                <div class="section" data-section="2">
-                    <h2 class="section-title">Section 2: Project & Workflow Management</h2>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 6 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 15 min</span>
-                                <span class="meta-badge">📊 15 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">PROJECT SCENARIO: You are managing a launch of 500 AI-generated styled product images for Fall Collection.
+                            <div class="question-text">PROJECT SCENARIO: You are managing a launch of 500 AI-generated styled product images for Fall Collection.
 
 Parameters:
 • Timeline: 6 weeks from kickoff to delivery
@@ -528,328 +814,377 @@ a) Project structure outline with task hierarchy, dependencies, and milestones
 b) Capacity calculation showing how you'll achieve 500 images in 6 weeks
 c) Top 3 bottlenecks and mitigation strategies
 d) 5-7 dashboard KPIs to track weekly</div>
-                        <div class="input-group">
-                            <textarea name="q6" required placeholder="Enter your comprehensive project plan here..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 7 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 2 min</span>
-                                <span class="meta-badge">📊 2 pts</span>
+                            <div class="input-group">
+                                <textarea name="q6" required placeholder="Enter your comprehensive project plan here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">Three weeks into a project, you're tracking 15% behind schedule due to higher-than-expected rework rates (22% vs. projected 15%). Which intervention is MOST appropriate?</div>
-                        <div class="input-group">
-                            <div class="radio-group">
-                                <div class="option">
-                                    <input type="radio" id="q7a" name="q7" value="A" required>
-                                    <label for="q7a">Request timeline extension from stakeholders and maintain current pace</label>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 7 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 2 min</span>
+                                    <span class="meta-badge">📊 2 pts</span>
                                 </div>
-                                <div class="option">
-                                    <input type="radio" id="q7b" name="q7" value="B">
-                                    <label for="q7b">Immediately conduct root cause analysis on quality issues, implement corrective training, and adjust weekly capacity targets</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q7c" name="q7" value="C">
-                                    <label for="q7c">Add weekend shifts for the team to catch up on volume</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q7d" name="q7" value="D">
-                                    <label for="q7d">Reduce quality standards temporarily to meet deadline, then address systemic issues post-launch</label>
+                            </div>
+                            <div class="question-text">Three weeks into a project, you're tracking 15% behind schedule due to higher-than-expected rework rates (22% vs. projected 15%). Which intervention is MOST appropriate?</div>
+                            <div class="input-group">
+                                <div class="radio-group">
+                                    <div class="option">
+                                        <input type="radio" id="q7a" name="q7" value="A" required>
+                                        <label for="q7a">Request timeline extension from stakeholders and maintain current pace</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q7b" name="q7" value="B">
+                                        <label for="q7b">Immediately conduct root cause analysis on quality issues, implement corrective training, and adjust weekly capacity targets</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q7c" name="q7" value="C">
+                                        <label for="q7c">Add weekend shifts for the team to catch up on volume</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q7d" name="q7" value="D">
+                                        <label for="q7d">Reduce quality standards temporarily to meet deadline, then address systemic issues post-launch</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 8 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 5 min</span>
-                                <span class="meta-badge">📊 6 pts</span>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 8 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 5 min</span>
+                                    <span class="meta-badge">📊 6 pts</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="question-text">Describe your process for building a production schedule for a team working across 3 time zones (PST, GMT, IST). Include considerations for:
+                            <div class="question-text">Describe your process for building a production schedule for a team working across 3 time zones (PST, GMT, IST). Include considerations for:
 • Handoff protocols
 • Real-time collaboration windows
 • Task assignment logic
 • Communication rhythms</div>
-                        <div class="input-group">
-                            <textarea name="q8" required placeholder="Enter your answer here..."></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SECTION 3 -->
-                <div class="section" data-section="3">
-                    <h2 class="section-title">Section 3: Vendor & 3PL Management</h2>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 9 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 7 min</span>
-                                <span class="meta-badge">📊 8 pts</span>
+                            <div class="input-group">
+                                <textarea name="q8" required placeholder="Enter your answer here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">You're onboarding a new 3PL vendor to handle 40% of your image production volume. Develop a comprehensive onboarding plan including:
+                    </div>
+                    
+                    <!-- SECTION 3 -->
+                    <div class="section" data-section="3">
+                        <h2 class="section-title">Section 3: Vendor & 3PL Management</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 9 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 7 min</span>
+                                    <span class="meta-badge">📊 8 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">You're onboarding a new 3PL vendor to handle 40% of your image production volume. Develop a comprehensive onboarding plan including:
 • Week 1-2 activities and deliverables
 • Training requirements and materials needed
 • Performance benchmarks for the first 90 days
 • Communication cadence and escalation protocols</div>
-                        <div class="input-group">
-                            <textarea name="q9" required placeholder="Enter your onboarding plan here..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 10 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 5 min</span>
-                                <span class="meta-badge">📊 5 pts</span>
+                            <div class="input-group">
+                                <textarea name="q9" required placeholder="Enter your onboarding plan here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">Your primary vendor consistently delivers 48-72 hours past SLA deadlines (10% of projects), though quality meets standards. They cite "internal resource constraints." How would you address this? Include:
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 10 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 5 min</span>
+                                    <span class="meta-badge">📊 5 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Your primary vendor consistently delivers 48-72 hours past SLA deadlines (10% of projects), though quality meets standards. They cite "internal resource constraints." How would you address this? Include:
 • Your immediate response
 • Framework for performance improvement
 • Decision criteria for vendor replacement vs. remediation</div>
-                        <div class="input-group">
-                            <textarea name="q10" required placeholder="Enter your answer here..."></textarea>
+                            <div class="input-group">
+                                <textarea name="q10" required placeholder="Enter your answer here..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 11 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 1 min</span>
+                                    <span class="meta-badge">📊 1 pt</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Which SLA metric is MOST critical for a virtual styling production vendor?</div>
+                            <div class="input-group">
+                                <div class="radio-group">
+                                    <div class="option">
+                                        <input type="radio" id="q11a" name="q11" value="A" required>
+                                        <label for="q11a">Cost per image produced</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q11b" name="q11" value="B">
+                                        <label for="q11b">On-time delivery rate + quality acceptance rate (composite metric)</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q11c" name="q11" value="C">
+                                        <label for="q11c">Total monthly volume capacity</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" id="q11d" name="q11" value="D">
+                                        <label for="q11d">Response time to communication</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 12 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 3 min</span>
+                                    <span class="meta-badge">📊 3 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Create a vendor scorecard template. List 6-8 metrics you would track monthly and explain how you would weight them.</div>
+                            <div class="input-group">
+                                <textarea name="q12" required placeholder="Enter your scorecard design here..."></textarea>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 11 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 1 min</span>
-                                <span class="meta-badge">📊 1 pt</span>
-                            </div>
-                        </div>
-                        <div class="question-text">Which SLA metric is MOST critical for a virtual styling production vendor?</div>
-                        <div class="input-group">
-                            <div class="radio-group">
-                                <div class="option">
-                                    <input type="radio" id="q11a" name="q11" value="A" required>
-                                    <label for="q11a">Cost per image produced</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q11b" name="q11" value="B">
-                                    <label for="q11b">On-time delivery rate + quality acceptance rate (composite metric)</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q11c" name="q11" value="C">
-                                    <label for="q11c">Total monthly volume capacity</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" id="q11d" name="q11" value="D">
-                                    <label for="q11d">Response time to communication</label>
+                    <!-- SECTION 4 -->
+                    <div class="section" data-section="4">
+                        <h2 class="section-title">Section 4: Quality Assurance & Styling Knowledge</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 13 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 8 min</span>
+                                    <span class="meta-badge">📊 10 pts</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 12 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 3 min</span>
-                                <span class="meta-badge">📊 3 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">Create a vendor scorecard template. List 6-8 metrics you would track monthly and explain how you would weight them.</div>
-                        <div class="input-group">
-                            <textarea name="q12" required placeholder="Enter your scorecard design here..."></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SECTION 4 -->
-                <div class="section" data-section="4">
-                    <h2 class="section-title">Section 4: Quality Assurance & Styling Knowledge</h2>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 13 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 8 min</span>
-                                <span class="meta-badge">📊 10 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">STYLING SCENARIO: An AI-generated image shows a model wearing a burgundy cashmere sweater with wide-leg cream trousers and cognac leather loafers. The image quality is sharp, but the styling team flags concerns about proportions, seasonal appropriateness, and brand alignment.
+                            <div class="question-text">STYLING SCENARIO: An AI-generated image shows a model wearing a burgundy cashmere sweater with wide-leg cream trousers and cognac leather loafers. The image quality is sharp, but the styling team flags concerns about proportions, seasonal appropriateness, and brand alignment.
 
 Provide specific feedback addressing:
 • What quality criteria would you use to evaluate this image?
 • What questions would you ask the styling team and AI creative team?
 • How would you determine if this is a styling issue, AI rendering issue, or both?
 • What documentation would you create to prevent similar issues?</div>
-                        <div class="input-group">
-                            <textarea name="q13" required placeholder="Enter your detailed analysis here..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 14 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 2 min</span>
-                                <span class="meta-badge">📊 3 pts</span>
+                            <div class="input-group">
+                                <textarea name="q13" required placeholder="Enter your detailed analysis here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">Which factors are critical for digital image quality standards in virtual styling? (Select ALL that apply)</div>
-                        <div class="input-group">
-                            <div class="checkbox-group">
-                                <div class="option">
-                                    <input type="checkbox" id="q14a" name="q14[]" value="A">
-                                    <label for="q14a">Color accuracy and consistency with brand palette</label>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 14 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 2 min</span>
+                                    <span class="meta-badge">📊 3 pts</span>
                                 </div>
-                                <div class="option">
-                                    <input type="checkbox" id="q14b" name="q14[]" value="B">
-                                    <label for="q14b">Fabric texture rendering and material realism</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox" id="q14c" name="q14[]" value="C">
-                                    <label for="q14c">Model pose naturalness and body proportions</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox" id="q14d" name="q14[]" value="D">
-                                    <label for="q14d">Shadow and lighting consistency</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox" id="q14e" name="q14[]" value="E">
-                                    <label for="q14e">Background styling and environmental context</label>
-                                </div>
-                                <div class="option">
-                                    <input type="checkbox" id="q14f" name="q14[]" value="F">
-                                    <label for="q14f">Outfit cohesion and styling logic</label>
+                            </div>
+                            <div class="question-text">Which factors are critical for digital image quality standards in virtual styling? (Select ALL that apply)</div>
+                            <div class="input-group">
+                                <div class="checkbox-group">
+                                    <div class="option">
+                                        <input type="checkbox" id="q14a" name="q14[]" value="A">
+                                        <label for="q14a">Color accuracy and consistency with brand palette</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" id="q14b" name="q14[]" value="B">
+                                        <label for="q14b">Fabric texture rendering and material realism</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" id="q14c" name="q14[]" value="C">
+                                        <label for="q14c">Model pose naturalness and body proportions</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" id="q14d" name="q14[]" value="D">
+                                        <label for="q14d">Shadow and lighting consistency</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" id="q14e" name="q14[]" value="E">
+                                        <label for="q14e">Background styling and environmental context</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="checkbox" id="q14f" name="q14[]" value="F">
+                                        <label for="q14f">Outfit cohesion and styling logic</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 15 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 5 min</span>
-                                <span class="meta-badge">📊 5 pts</span>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 15 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 5 min</span>
+                                    <span class="meta-badge">📊 5 pts</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="question-text">You notice your AI styling model consistently produces images where accessories (jewelry, bags, belts) appear in incorrect scale or unrealistic positioning. How would you:
+                            <div class="question-text">You notice your AI styling model consistently produces images where accessories (jewelry, bags, belts) appear in incorrect scale or unrealistic positioning. How would you:
 • Document this pattern for the AI team
 • Create interim quality checkpoints while the issue is being resolved
 • Train your QA specialists to catch these issues</div>
-                        <div class="input-group">
-                            <textarea name="q15" required placeholder="Enter your answer here..."></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SECTION 5 -->
-                <div class="section" data-section="5">
-                    <h2 class="section-title">Section 5: Data-Driven Decision Making</h2>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 16 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 10 min</span>
-                                <span class="meta-badge">📊 10 pts</span>
+                            <div class="input-group">
+                                <textarea name="q15" required placeholder="Enter your answer here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">PRODUCTION DATA ANALYSIS (Q3):
-
-Metric              | Jul   | Aug   | Sep
---------------------|-------|-------|-------
-Images Produced     | 1,200 | 1,450 | 1,380
-First-Pass Accept   | 82%   | 79%   | 76%
-Avg. Time/Image     | 2.1hr | 2.4hr | 2.6hr
-Vendor A Output     | 600   | 700   | 720
-Vendor B Output     | 400   | 450   | 380
-In-house Output     | 200   | 300   | 280
-Rework Hours        | 180   | 245   | 310
-
-Answer:
-a) What are the 3 most concerning trends?
-b) What hypotheses would you develop to explain declining first-pass acceptance rates?
-c) What additional data would you request to validate your hypotheses?
-d) Propose one immediate intervention based on this data.</div>
-                        <div class="input-group">
-                            <textarea name="q16" required placeholder="Enter your data analysis here..."></textarea>
-                        </div>
                     </div>
-                </div>
-                
-                <!-- SECTION 6 -->
-                <div class="section" data-section="6">
-                    <h2 class="section-title">Section 6: Innovation & AI Integration</h2>
                     
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 17 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 7 min</span>
-                                <span class="meta-badge">📊 8 pts</span>
+                    <!-- SECTION 5 -->
+                    <div class="section" data-section="5">
+                        <h2 class="section-title">Section 5: Data-Driven Decision Making</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 16 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 10 min</span>
+                                    <span class="meta-badge">📊 10 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">
+                                <strong>PRODUCTION DATA ANALYSIS (Q3):</strong>
+                                
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Metric</th>
+                                            <th>Jul</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Images Produced</td>
+                                            <td>1,200</td>
+                                            <td>1,450</td>
+                                            <td>1,380</td>
+                                        </tr>
+                                        <tr>
+                                            <td>First-Pass Accept</td>
+                                            <td>82%</td>
+                                            <td>79%</td>
+                                            <td>76%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Avg. Time/Image</td>
+                                            <td>2.1hr</td>
+                                            <td>2.4hr</td>
+                                            <td>2.6hr</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vendor A Output</td>
+                                            <td>600</td>
+                                            <td>700</td>
+                                            <td>720</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vendor B Output</td>
+                                            <td>400</td>
+                                            <td>450</td>
+                                            <td>380</td>
+                                        </tr>
+                                        <tr>
+                                            <td>In-house Output</td>
+                                            <td>200</td>
+                                            <td>300</td>
+                                            <td>280</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rework Hours</td>
+                                            <td>180</td>
+                                            <td>245</td>
+                                            <td>310</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <div style="margin-top: 20px;">
+                                    <strong>Answer:</strong><br>
+                                    a) What are the 3 most concerning trends?<br>
+                                    b) What hypotheses would you develop to explain declining first-pass acceptance rates?<br>
+                                    c) What additional data would you request to validate your hypotheses?<br>
+                                    d) Propose one immediate intervention based on this data.
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <textarea name="q16" required placeholder="Enter your data analysis here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">Your company wants to integrate AI automation to reduce manual styling time by 30% while maintaining quality standards.
+                    </div>
+                    
+                    <!-- SECTION 6 -->
+                    <div class="section" data-section="6">
+                        <h2 class="section-title">Section 6: Innovation & AI Integration</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 17 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 7 min</span>
+                                    <span class="meta-badge">📊 8 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Your company wants to integrate AI automation to reduce manual styling time by 30% while maintaining quality standards.
 
 Outline your approach to:
 • Identifying which workflow components are best suited for AI automation
 • Managing team concerns about AI replacing human stylists
 • Piloting and measuring success of AI integration
 • Balancing efficiency gains with creative excellence</div>
-                        <div class="input-group">
-                            <textarea name="q17" required placeholder="Enter your AI integration strategy here..."></textarea>
+                            <div class="input-group">
+                                <textarea name="q17" required placeholder="Enter your AI integration strategy here..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 18 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 4 min</span>
+                                    <span class="meta-badge">📊 3 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Name 3 emerging technologies or tools in digital fashion/virtual styling that you believe will significantly impact production workflows in the next 18-24 months. For each, briefly explain the potential application.</div>
+                            <div class="input-group">
+                                <textarea name="q18" required placeholder="Enter your technology insights here..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 19 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 2 min</span>
+                                    <span class="meta-badge">📊 2 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">How would you stay current with industry trends in virtual styling, AI-generated imagery, and digital fashion? List specific resources, communities, or practices.</div>
+                            <div class="input-group">
+                                <textarea name="q19" required placeholder="Enter your learning approach here..."></textarea>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 18 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 4 min</span>
-                                <span class="meta-badge">📊 3 pts</span>
+                    <!-- SECTION 7 -->
+                    <div class="section" data-section="7">
+                        <h2 class="section-title">Section 7: Documentation & SOP Development</h2>
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 20 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 5 min</span>
+                                    <span class="meta-badge">📊 6 pts</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="question-text">Name 3 emerging technologies or tools in digital fashion/virtual styling that you believe will significantly impact production workflows in the next 18-24 months. For each, briefly explain the potential application.</div>
-                        <div class="input-group">
-                            <textarea name="q18" required placeholder="Enter your technology insights here..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 19 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 2 min</span>
-                                <span class="meta-badge">📊 2 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">How would you stay current with industry trends in virtual styling, AI-generated imagery, and digital fashion? List specific resources, communities, or practices.</div>
-                        <div class="input-group">
-                            <textarea name="q19" required placeholder="Enter your learning approach here..."></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SECTION 7 -->
-                <div class="section" data-section="7">
-                    <h2 class="section-title">Section 7: Documentation & SOP Development</h2>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 20 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 5 min</span>
-                                <span class="meta-badge">📊 6 pts</span>
-                            </div>
-                        </div>
-                        <div class="question-text">Create an outline for a Standard Operating Procedure (SOP) titled: "Virtual Styling Quality Review Process"
+                            <div class="question-text">Create an outline for a Standard Operating Procedure (SOP) titled: "Virtual Styling Quality Review Process"
 
 Your outline should include:
 • Main sections/chapters
@@ -857,20 +1192,20 @@ Your outline should include:
 • Roles and responsibilities
 • Success metrics
 • Revision/update protocols</div>
-                        <div class="input-group">
-                            <textarea name="q20" required placeholder="Enter your SOP outline here..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="question">
-                        <div class="question-header">
-                            <div class="question-title">Question 21 <span class="required">*</span></div>
-                            <div class="question-meta">
-                                <span class="meta-badge">⏱ 4 min</span>
-                                <span class="meta-badge">📊 4 pts</span>
+                            <div class="input-group">
+                                <textarea name="q20" required placeholder="Enter your SOP outline here..."></textarea>
                             </div>
                         </div>
-                        <div class="question-text">Review this SOP excerpt:
+                        
+                        <div class="question">
+                            <div class="question-header">
+                                <div class="question-title">Question 21 <span class="required">*</span></div>
+                                <div class="question-meta">
+                                    <span class="meta-badge">⏱ 4 min</span>
+                                    <span class="meta-badge">📊 4 pts</span>
+                                </div>
+                            </div>
+                            <div class="question-text">Review this SOP excerpt:
 
 "Stylists should review images carefully and check for quality issues. If problems are found, send back to production. Use good judgment about whether the image meets brand standards. Escalate to manager if unsure."
 
@@ -879,186 +1214,253 @@ Critique this excerpt and rewrite it to meet professional SOP standards. Address
 • Missing procedural steps
 • Accountability clarity
 • Measurability</div>
-                        <div class="input-group">
-                            <textarea name="q21" required placeholder="Enter your critique and rewritten SOP here..."></textarea>
+                            <div class="input-group">
+                                <textarea name="q21" required placeholder="Enter your critique and rewritten SOP here..."></textarea>
+                            </div>
                         </div>
                     </div>
+                    
+                    <div class="navigation">
+                        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeSection(-1)">Previous</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeSection(1)">Next Section</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Submit Assessment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden">
+            <div class="results-container">
+                <div id="loadingResults">
+                    <div class="spinner-border"></div>
+                    <h3 style="margin-top: 20px;">Submitting your assessment...</h3>
+                    <p>Please wait while we process your answers.</p>
                 </div>
-                
-                <div class="navigation">
-                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeSection(-1)">Previous</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeSection(1)">Next Section</button>
-                    <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Submit Assessment</button>
+
+                <div id="finalMessage" class="hidden">
+                    <div style="font-size: 5em; color: #28a745; margin-bottom: 20px;">✓</div>
+                    <h2>Assessment Submitted Successfully!</h2>
+                    <div class="alert alert-success" style="margin-top: 30px; text-align: left;">
+                        <h5>Thank You, <span id="candidateNameDisplay"></span>!</h5>
+                        <p>Your assessment has been submitted and recorded.</p>
+                        <p><strong>Email:</strong> <span id="candidateEmailDisplay"></span></p>
+                    </div>
+                    <div class="alert alert-info" style="text-align: left;">
+                        <h5>What's Next?</h5>
+                        <p>Our team will review your responses within 2-3 business days.</p>
+                        <p>If you meet our requirements, we'll contact you via email to schedule the next stage of the interview process.</p>
+                    </div>
+                    <p style="color: #6c757d; margin-top: 30px;">You may now close this window.</p>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     
     <script>
-       // COMPLETE SCRIPT SECTION - Replace entire <script> tag content in your HTML
+        const WEBHOOK_URL = 'https://n8n.srv983823.hstgr.cloud/webhook/senior-manager/leadership-assessment-complete';
 
-let currentSection = 1;
-const totalSections = 7;
-let startTime = Date.now();
-let timerInterval;
+        let currentSection = 1;
+        const totalSections = 7;
+        let startTime;
+        let timerInterval;
+        let tabSwitches = 0;
+        let candidateName = '';
+        let candidateEmail = '';
+        let candidatePhone = '';
 
-function updateTimer() {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    const minutes = Math.floor(elapsed / 60);
-    const seconds = elapsed % 60;
-    document.getElementById('timer').textContent = 
-        `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
-
-timerInterval = setInterval(updateTimer, 1000);
-
-function changeSection(direction) {
-    const sections = document.querySelectorAll('.section');
-    sections[currentSection - 1].classList.remove('active');
-    
-    currentSection += direction;
-    
-    if (currentSection < 1) currentSection = 1;
-    if (currentSection > totalSections) currentSection = totalSections;
-    
-    sections[currentSection - 1].classList.add('active');
-    updateNavigation();
-    updateProgress();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function updateNavigation() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
-    
-    prevBtn.style.display = currentSection === 1 ? 'none' : 'block';
-    
-    if (currentSection === totalSections) {
-        nextBtn.style.display = 'none';
-        submitBtn.style.display = 'block';
-    } else {
-        nextBtn.style.display = 'block';
-        submitBtn.style.display = 'none';
-    }
-}
-
-function updateProgress() {
-    const progress = (currentSection / totalSections) * 100;
-    document.getElementById('progressBar').style.width = progress + '%';
-}
-
-// WEBHOOK SUBMISSION HANDLER
-document.getElementById('assessmentForm').addEventListener('submit', async function(e) {
-    e.preventDefault(); // Prevent default form submission
-    
-    const totalTime = Math.floor((Date.now() - startTime) / 1000);
-    const formData = new FormData(this);
-    
-    // Convert FormData to JSON object
-    const formObject = {};
-    
-    // Add total time
-    formObject.total_time = totalTime;
-    formObject.total_time_formatted = `${Math.floor(totalTime / 60)}:${String(totalTime % 60).padStart(2, '0')}`;
-    
-    // Process all form fields
-    for (let [key, value] of formData.entries()) {
-        // Handle checkbox arrays
-        if (key.includes('[]')) {
-            const cleanKey = key.replace('[]', '');
-            if (!formObject[cleanKey]) {
-                formObject[cleanKey] = [];
-            }
-            formObject[cleanKey].push(value);
-        } else {
-            formObject[key] = value;
-        }
-    }
-    
-    // Add metadata
-    formObject.submission_timestamp = new Date().toISOString();
-    formObject.assessment_type = "Leadership Assessment - Virtual Styling Operations Manager";
-    
-    try {
-        // Show loading state
-        const submitBtn = document.getElementById('submitBtn');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Submitting...';
-        submitBtn.disabled = true;
-        
-        // Send to webhook
-        const response = await fetch('https://n8n.srv983823.hstgr.cloud/webhook-test/senior-manager/leadership-assessment-complete', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formObject)
+        // Disable copy/paste
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('copy', e => { e.preventDefault(); return false; });
+            document.addEventListener('cut', e => { e.preventDefault(); return false; });
+            document.addEventListener('paste', e => { e.preventDefault(); return false; });
+            document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
+            
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'v', 'C', 'X', 'V', 'u', 'U'].includes(e.key)) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'I'].includes(e.key))) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
         });
-        
-        if (response.ok) {
-            // Clear localStorage on successful submission
-            const inputs = this.querySelectorAll('input, textarea');
-            inputs.forEach(input => localStorage.removeItem(input.name));
+
+        function startAssessment(event) {
+            event.preventDefault();
             
-            // Show success message
-            alert('Assessment submitted successfully! Thank you for completing the evaluation.');
+            candidateName = document.getElementById('candidateName').value;
+            candidateEmail = document.getElementById('candidateEmail').value;
+            candidatePhone = document.getElementById('candidatePhone').value;
             
-            // Optional: Reset form or redirect
-            // window.location.href = 'thank-you.html';
-            this.reset();
+            document.getElementById('registrationScreen').classList.add('hidden');
+            document.getElementById('assessmentScreen').classList.remove('hidden');
             
-        } else {
-            throw new Error(`Server responded with status: ${response.status}`);
+            startTime = Date.now();
+            startTimer();
+            setupTabSwitchDetection();
+            loadSavedAnswers();
+            updateNavigation();
+            updateProgress();
         }
-        
-    } catch (error) {
-        console.error('Submission error:', error);
-        alert('There was an error submitting your assessment. Please try again or contact support if the issue persists.');
-        
-        // Restore button state
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }
-});
 
-updateNavigation();
-updateProgress();
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('timer').textContent = 
+                    `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
 
-// AUTO-SAVE FUNCTIONALITY
-const form = document.getElementById('assessmentForm');
-const inputs = form.querySelectorAll('input, textarea');
+        function setupTabSwitchDetection() {
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    tabSwitches++;
+                    document.getElementById('tabSwitchCounter').textContent = tabSwitches;
+                    
+                    const warningMsg = document.getElementById('warningMessage');
+                    warningMsg.classList.remove('hidden');
+                    setTimeout(() => warningMsg.classList.add('hidden'), 3000);
+                }
+            });
+        }
 
-inputs.forEach(input => {
-    const savedValue = localStorage.getItem(input.name);
-    if (savedValue && input.type !== 'radio' && input.type !== 'checkbox') {
-        input.value = savedValue;
-    } else if (savedValue && input.type === 'radio' && input.value === savedValue) {
-        input.checked = true;
-    } else if (savedValue && input.type === 'checkbox') {
-        try {
-            const savedValues = JSON.parse(savedValue);
-            if (savedValues.includes(input.value)) {
-                input.checked = true;
+        function loadSavedAnswers() {
+            const form = document.getElementById('assessmentForm');
+            const inputs = form.querySelectorAll('input, textarea');
+            
+            inputs.forEach(input => {
+                const savedValue = localStorage.getItem(input.name);
+                if (savedValue && input.type !== 'radio' && input.type !== 'checkbox') {
+                    input.value = savedValue;
+                } else if (savedValue && input.type === 'radio' && input.value === savedValue) {
+                    input.checked = true;
+                } else if (savedValue && input.type === 'checkbox') {
+                    try {
+                        const savedValues = JSON.parse(savedValue);
+                        if (savedValues.includes(input.value)) {
+                            input.checked = true;
+                        }
+                    } catch (e) {
+                        if (savedValue === input.value) {
+                            input.checked = true;
+                        }
+                    }
+                }
+                
+                input.addEventListener('input', function() {
+                    if (this.type === 'checkbox') {
+                        const checked = Array.from(document.querySelectorAll(`input[name="${this.name}"]:checked`))
+                            .map(cb => cb.value);
+                        localStorage.setItem(this.name, JSON.stringify(checked));
+                    } else {
+                        localStorage.setItem(this.name, this.value);
+                    }
+                });
+            });
+        }
+
+        function changeSection(direction) {
+            const sections = document.querySelectorAll('.section');
+            sections[currentSection - 1].classList.remove('active');
+            
+            currentSection += direction;
+            
+            if (currentSection < 1) currentSection = 1;
+            if (currentSection > totalSections) currentSection = totalSections;
+            
+            sections[currentSection - 1].classList.add('active');
+            document.getElementById('currentSection').textContent = currentSection;
+            updateNavigation();
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            prevBtn.style.display = currentSection === 1 ? 'none' : 'block';
+            
+            if (currentSection === totalSections) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
             }
-        } catch (e) {
-            // Handle legacy single value format
-            if (savedValue === input.value) {
-                input.checked = true;
+        }
+
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        document.getElementById('assessmentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            clearInterval(timerInterval);
+            const totalTime = Math.floor((Date.now() - startTime) / 1000);
+            const formData = new FormData(this);
+            
+            const formObject = {
+                name: candidateName,
+                email: candidateEmail,
+                phone: candidatePhone,
+                total_time: totalTime,
+                total_time_formatted: `${Math.floor(totalTime / 60)}:${String(totalTime % 60).padStart(2, '0')}`,
+                tab_switches: tabSwitches,
+                submission_timestamp: new Date().toISOString(),
+                assessment_type: "Leadership Assessment - Virtual Styling Operations Manager"
+            };
+            
+            for (let [key, value] of formData.entries()) {
+                if (key.includes('[]')) {
+                    const cleanKey = key.replace('[]', '');
+                    if (!formObject[cleanKey]) {
+                        formObject[cleanKey] = [];
+                    }
+                    formObject[cleanKey].push(value);
+                } else {
+                    formObject[key] = value;
+                }
             }
-        }
-    }
-    
-    input.addEventListener('input', function() {
-        if (this.type === 'checkbox') {
-            const checked = Array.from(document.querySelectorAll(`input[name="${this.name}"]:checked`))
-                .map(cb => cb.value);
-            localStorage.setItem(this.name, JSON.stringify(checked));
-        } else {
-            localStorage.setItem(this.name, this.value);
-        }
-    });
-});
+            
+            document.getElementById('assessmentScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject)
+                });
+                
+                if (response.ok) {
+                    const inputs = this.querySelectorAll('input, textarea');
+                    inputs.forEach(input => localStorage.removeItem(input.name));
+                }
+                
+                document.getElementById('loadingResults').classList.add('hidden');
+                document.getElementById('finalMessage').classList.remove('hidden');
+                document.getElementById('candidateNameDisplay').textContent = candidateName;
+                document.getElementById('candidateEmailDisplay').textContent = candidateEmail;
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                document.getElementById('loadingResults').classList.add('hidden');
+                document.getElementById('finalMessage').classList.remove('hidden');
+                document.getElementById('candidateNameDisplay').textContent = candidateName;
+                document.getElementById('candidateEmailDisplay').textContent = candidateEmail;
+            }
+        });
     </script>
 </body>
 </html>

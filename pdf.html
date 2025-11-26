@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya Sharma - Senior Manager CV</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        #cv-content {
+            padding: 3rem;
+        }
+        
+        .header {
+            border-bottom: 4px solid #1f2937;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .header .subtitle {
+            font-size: 1.25rem;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #d1d5db;
+            padding-bottom: 0.25rem;
+        }
+        
+        .section p {
+            color: #374151;
+            text-align: justify;
+        }
+        
+        .competencies {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 2rem;
+            color: #374151;
+        }
+        
+        .job {
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .job h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        
+        .job .company {
+            color: #374151;
+            font-style: italic;
+        }
+        
+        .job .date {
+            color: #4b5563;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .job ul {
+            list-style: none;
+            padding-left: 0;
+            color: #374151;
+        }
+        
+        .job ul li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .education-item {
+            margin-bottom: 1rem;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+        
+        .education-item h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        
+        .education-item .school {
+            color: #374151;
+            font-style: italic;
+        }
+        
+        .education-item .details {
+            color: #374151;
+            margin-top: 0.25rem;
+        }
+        
+        .skills p {
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skills .label {
+            font-weight: 600;
+        }
+        
+        .certifications ul {
+            list-style: none;
+            padding-left: 0;
+            color: #374151;
+        }
+        
+        .certifications ul li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .additional-info p {
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .additional-info .label {
+            font-weight: 600;
+        }
+        
+        .download-section {
+            padding: 1.5rem;
+            background-color: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .download-btn {
+            width: 100%;
+            background-color: #1f2937;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #374151;
+        }
+        
+        .download-info {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-top: 0.75rem;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="cv-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>PRIYA SHARMA</h1>
+                <div class="subtitle">Senior Operations Manager | Digital Fashion & Creative Production</div>
+                <div class="contact-info">
+                    <span>📧 priya.sharma@email.com</span>
+                    <span>📱 +44 7700 900123</span>
+                    <span>📍 London, UK</span>
+                    <span>🔗 linkedin.com/in/priyasharma</span>
+                </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="section">
+                <h2>PROFESSIONAL SUMMARY</h2>
+                <p>
+                    Results-driven Senior Operations Manager with 8+ years of experience leading digital fashion production, 
+                    creative operations, and large-scale outsourced teams across Asia and Europe. Proven track record of 
+                    scaling distributed teams to 100+ members while maintaining exceptional quality standards and operational 
+                    efficiency. Expert in project management tools (Asana, Monday.com), vendor relationship management, and 
+                    integrating AI technologies into creative workflows. Combines strong fashion aesthetics with data-driven 
+                    decision-making to deliver brand excellence at scale.
+                </p>
+            </div>
+
+            <!-- Core Competencies -->
+            <div class="section">
+                <h2>CORE COMPETENCIES</h2>
+                <div class="competencies">
+                    <div>• Distributed Team Leadership & Scaling</div>
+                    <div>• Virtual Styling & AI Image Production</div>
+                    <div>• Project Management (Asana, Airtable)</div>
+                    <div>• 3PL & Vendor Relationship Management</div>
+                    <div>• Quality Control & Brand Standards</div>
+                    <div>• Cross-Functional Stakeholder Collaboration</div>
+                    <div>• Process Optimization & Automation</div>
+                    <div>• Performance Metrics & KPI Development</div>
+                    <div>• SOP Development & Training</div>
+                    <div>• Digital Fashion & E-commerce Production</div>
+                </div>
+            </div>
+
+            <!-- Professional Experience -->
+            <div class="section">
+                <h2>PROFESSIONAL EXPERIENCE</h2>
+                
+                <!-- Job 1 -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <h3>Senior Operations Manager, Digital Content</h3>
+                            <div class="company">ASOS | London, UK</div>
+                        </div>
+                        <div class="date">Jan 2021 - Present</div>
+                    </div>
+                    <ul>
+                        <li>• Lead distributed team of 85+ virtual stylists and image quality specialists across UK, India, and Philippines, achieving 98% on-time delivery rate</li>
+                        <li>• Scaled outsourced production team from 30 to 85 members in 18 months while maintaining quality standards and reducing cost-per-image by 32%</li>
+                        <li>• Manage end-to-end workflows for 15,000+ monthly product images using Asana, implementing automated task routing and capacity planning dashboards</li>
+                        <li>• Established comprehensive KPI framework tracking quality scores, turnaround time, and team productivity, resulting in 25% efficiency improvement</li>
+                        <li>• Oversee relationships with 4 major 3PL vendors and production partners, enforcing SLAs and conducting quarterly performance reviews</li>
+                        <li>• Collaborate with AI and creative teams to integrate virtual styling technologies, reducing physical sample requirements by 40%</li>
+                        <li>• Developed 12 SOPs and training playbooks ensuring brand consistency across all internal and external teams</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <h3>Creative Operations Manager</h3>
+                            <div class="company">Zalando | Berlin, Germany</div>
+                        </div>
+                        <div class="date">Mar 2019 - Dec 2020</div>
+                    </div>
+                    <ul>
+                        <li>• Managed cross-functional team of 35 creative specialists producing content for 12 European markets</li>
+                        <li>• Implemented Monday.com for project tracking, reducing planning time by 40% and improving stakeholder visibility</li>
+                        <li>• Led vendor onboarding and training for 3 offshore production studios in Vietnam and Romania</li>
+                        <li>• Established quality control framework with systematic review processes, achieving 95% first-pass approval rate</li>
+                        <li>• Collaborated with merchandising and brand teams to align visual content with seasonal campaigns and business objectives</li>
+                        <li>• Created real-time operational dashboards providing visibility into team capacity, project status, and quality metrics</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <h3>E-commerce Production Lead</h3>
+                            <div class="company">Net-a-Porter | London, UK</div>
+                        </div>
+                        <div class="date">Jun 2017 - Feb 2019</div>
+                    </div>
+                    <ul>
+                        <li>• Supervised team of 18 stylists and photographers producing luxury fashion content for global e-commerce platform</li>
+                        <li>• Managed daily production schedules and capacity planning for 500+ monthly product shoots</li>
+                        <li>• Coordinated with external vendors for specialized photography and retouching services</li>
+                        <li>• Implemented quality standards ensuring consistency with luxury brand positioning and editorial style guidelines</li>
+                        <li>• Identified and resolved production bottlenecks, improving workflow efficiency by 28%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <h2>EDUCATION</h2>
+                <div class="education-item">
+                    <div class="education-header">
+                        <div>
+                            <h3>Bachelor of Arts in Fashion Merchandising</h3>
+                            <div class="school">London College of Fashion, University of the Arts London</div>
+                        </div>
+                        <div class="date">2013 - 2017</div>
+                    </div>
+                    <div class="details">First Class Honours | Focus: Digital Fashion and E-commerce Operations</div>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="section skills">
+                <h2>TECHNICAL SKILLS & TOOLS</h2>
+                <p><span class="label">Project Management:</span> Asana (Advanced), Monday.com, Airtable, Trello, Jira</p>
+                <p><span class="label">Creative Tools:</span> Adobe Creative Suite (Photoshop, Lightroom), Figma, Canva</p>
+                <p><span class="label">Analytics & Reporting:</span> Google Analytics, Tableau, Excel (Advanced), Power BI</p>
+                <p><span class="label">E-commerce Platforms:</span> Shopify, Magento, SAP Commerce Cloud</p>
+                <p><span class="label">AI/Automation Tools:</span> Midjourney, Stable Diffusion, Zapier, Process Street</p>
+            </div>
+
+            <!-- Certifications -->
+            <div class="section certifications">
+                <h2>CERTIFICATIONS & PROFESSIONAL DEVELOPMENT</h2>
+                <ul>
+                    <li>• Certified Project Management Professional (PMP) - Project Management Institute (2022)</li>
+                    <li>• Asana Certified Pro - Asana Academy (2021)</li>
+                    <li>• Six Sigma Green Belt - Operations Excellence (2020)</li>
+                    <li>• AI for Creative Production - Coursera (2024)</li>
+                </ul>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="section additional-info">
+                <h2>ADDITIONAL INFORMATION</h2>
+                <p><span class="label">Languages:</span> English (Native), Hindi (Fluent), German (Conversational)</p>
+                <p><span class="label">Professional Memberships:</span> Fashion & Textile Operations Network, Digital Fashion Association</p>
+            </div>
+        </div>
+
+        <!-- Download Button -->
+        <div class="download-section">
+            <button class="download-btn" onclick="downloadPDF()">Download CV as PDF</button>
+            <p class="download-info">Click the button above to download this CV as a PDF file</p>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 0.5,
+                filename: 'Priya_Sharma_Senior_Manager_CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>

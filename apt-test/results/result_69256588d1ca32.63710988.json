@@ -1,0 +1,202 @@
+{
+    "id": "result_69256588d1ca32.63710988",
+    "candidate": {
+        "name": "dsfsd",
+        "email": "sdfdsf@tewst.com",
+        "phone": "ssdfsdf"
+    },
+    "position": "Senior Manager - Production\/Operations",
+    "scores": {
+        "total": 12,
+        "max": 80,
+        "percentage": 15,
+        "sections": [
+            0,
+            4,
+            4,
+            4
+        ]
+    },
+    "performance": {
+        "band": "Below Threshold",
+        "class": "below",
+        "description": "Does not meet minimum requirements",
+        "recommendation": "Not recommended for this position"
+    },
+    "time_taken": {
+        "minutes": 3,
+        "seconds": 5,
+        "formatted": "3 min 5 sec"
+    },
+    "question_results": {
+        "1": {
+            "section": 0,
+            "user_answer": 0,
+            "correct_answer": 1,
+            "is_correct": false,
+            "points": 0
+        },
+        "2": {
+            "section": 0,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "3": {
+            "section": 0,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "4": {
+            "section": 0,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "5": {
+            "section": 0,
+            "user_answer": 0,
+            "correct_answer": 1,
+            "is_correct": false,
+            "points": 0
+        },
+        "6": {
+            "section": 1,
+            "user_answer": 3,
+            "correct_answer": 1,
+            "is_correct": false,
+            "points": 0
+        },
+        "7": {
+            "section": 1,
+            "user_answer": 1,
+            "correct_answer": 1,
+            "is_correct": true,
+            "points": 4
+        },
+        "8": {
+            "section": 1,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "9": {
+            "section": 1,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "10": {
+            "section": 1,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "11": {
+            "section": 2,
+            "user_answer": 0,
+            "correct_answer": 3,
+            "is_correct": false,
+            "points": 0
+        },
+        "12": {
+            "section": 2,
+            "user_answer": 1,
+            "correct_answer": 3,
+            "is_correct": false,
+            "points": 0
+        },
+        "13": {
+            "section": 2,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "14": {
+            "section": 2,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "15": {
+            "section": 2,
+            "user_answer": 0,
+            "correct_answer": 0,
+            "is_correct": true,
+            "points": 4
+        },
+        "16": {
+            "section": 3,
+            "user_answer": 1,
+            "correct_answer": 1,
+            "is_correct": true,
+            "points": 4
+        },
+        "17": {
+            "section": 3,
+            "user_answer": 0,
+            "correct_answer": 2,
+            "is_correct": false,
+            "points": 0
+        },
+        "18": {
+            "section": 3,
+            "user_answer": 0,
+            "correct_answer": 1,
+            "is_correct": false,
+            "points": 0
+        },
+        "19": {
+            "section": 3,
+            "user_answer": 0,
+            "correct_answer": 3,
+            "is_correct": false,
+            "points": 0
+        },
+        "20": {
+            "section": 3,
+            "user_answer": 0,
+            "correct_answer": 1,
+            "is_correct": false,
+            "points": 0
+        }
+    },
+    "raw_answers": {
+        "0-0": 0,
+        "0-1": 0,
+        "0-2": 0,
+        "0-3": 0,
+        "0-4": 0,
+        "1-0": 3,
+        "1-1": 1,
+        "1-2": 0,
+        "1-3": 0,
+        "1-4": 0,
+        "2-0": 0,
+        "2-1": 1,
+        "2-2": 0,
+        "2-3": 0,
+        "2-4": 0,
+        "3-0": 1,
+        "3-1": 0,
+        "3-2": 0,
+        "3-3": 0,
+        "3-4": 0
+    },
+    "metadata": {
+        "test_start": "2025-11-25T08:11:54.732Z",
+        "test_end": "2025-11-25T08:15:00.510Z",
+        "ip_address": "::1",
+        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/142.0.0.0 Safari\/537.36",
+        "processed_at": "2025-11-25 09:15:04"
+    }
+}

@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Manager Aptitude Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+        
+        .top-bar {
+            background: #2d5f5d;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-area {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-area img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+        
+        .timer-badge {
+            background: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: #1a2332;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .timer-badge.warning {
+            background: #e53e3e;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        /* Header */
+        .header {
+            background: #2d5f5d;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5f5d 0%, #245a58 100%);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .header .position {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            opacity: 0.85;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 2px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        .info-card h3 {
+            font-size: 20px;
+            color: #1a2332;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #2d5f5d;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-item {
+            background: #fafbfc;
+            padding: 20px;
+            border-radius: 2px;
+            text-align: center;
+            border: 2px solid #e8ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .info-item:hover {
+            border-color: #2d5f5d;
+            transform: translateY(-2px);
+        }
+        
+        .info-item .label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+        
+        .info-item .value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d5f5d;
+        }
+        
+        /* Instructions */
+        .instructions-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .instructions-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4a5568;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .instructions-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2d5f5d;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* Candidate Form */
+        .candidate-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a2332;
+            font-size: 14px;
+        }
+        
+        .form-group label .required {
+            color: #e74c3c;
+            font-size: 16px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e8ecef;
+            border-radius: 2px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2d5f5d;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.1);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 14px 36px;
+            border: none;
+            border-radius: 2px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        
+        .btn-primary {
+            background: #2d5f5d;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #245a58;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(45, 95, 93, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .btn-start {
+            display: block;
+            margin: 30px auto 0;
+            font-size: 15px;
+            padding: 16px 60px;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #1a2332;
+            border: 2px solid #1a2332;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a2332;
+            color: white;
+        }
+        
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        /* Test Screen */
+        .section-header {
+            background: #2d5f5d;
+            color: white;
+            padding: 25px 35px;
+            border-radius: 2px 2px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5f5d 0%, #245a58 100%);
+        }
+        
+        .section-info {
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: -0.3px;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .timer-display {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 18px;
+            z-index: 1;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: white;
+            padding: 25px 35px;
+            border-bottom: 2px solid #e8ecef;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e8ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #2d5f5d;
+            transition: width 0.4s ease;
+            border-radius: 4px;
+        }
+        
+        /* Question Navigator */
+        .question-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 20px 35px;
+            background: #fafbfc;
+            border-bottom: 2px solid #e8ecef;
+        }
+        
+        .question-nav-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e8ecef;
+            border-radius: 2px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            color: #4a5568;
+            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .question-nav-btn:hover {
+            border-color: #2d5f5d;
+            color: #2d5f5d;
+        }
+        
+        .question-nav-btn.active {
+            background: #2d5f5d;
+            border-color: #2d5f5d;
+            color: white;
+        }
+        
+        .question-nav-btn.answered {
+            background: #48bb78;
+            border-color: #48bb78;
+            color: white;
+        }
+        
+        /* Questions Container */
+        .questions-container {
+            background: white;
+            border-radius: 0 0 2px 2px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        .question {
+            padding: 40px 35px;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .question-num {
+            display: inline-block;
+            background: #2d5f5d;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        .question-points {
+            font-size: 13px;
+            color: #7f8c8d;
+            background: #fafbfc;
+            padding: 8px 16px;
+            border-radius: 2px;
+            border: 1px solid #e8ecef;
+            font-weight: 500;
+        }
+        
+        .question-text {
+            font-size: 15px;
+            margin-bottom: 25px;
+            color: #4a5568;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        .question-text pre {
+            background: #fafbfc;
+            padding: 18px;
+            border-radius: 2px;
+            overflow-x: auto;
+            font-size: 14px;
+            margin: 15px 0;
+            border: 2px solid #e8ecef;
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.6;
+        }
+        
+        .question-text ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        .question-text li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+        
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            border: 2px solid #e8ecef;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+        
+        .option:hover {
+            border-color: #2d5f5d;
+            background: #f0f7fc;
+            transform: translateX(2px);
+        }
+        
+        .option.selected {
+            border-color: #2d5f5d;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.1);
+        }
+        
+        .option input {
+            margin-top: 2px;
+            accent-color: #2d5f5d;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        .option-letter {
+            font-weight: 700;
+            color: #2d5f5d;
+            margin-right: 8px;
+        }
+        
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            border: 2px solid #e8ecef;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border: 1px solid #e8ecef;
+        }
+        
+        .data-table th {
+            background: #2d5f5d;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.3px;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #fafbfc;
+        }
+        
+        .data-table tr:hover {
+            background: #f0f7fc;
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 35px 35px;
+            gap: 15px;
+        }
+        
+        .nav-buttons .btn {
+            min-width: 160px;
+        }
+        
+        /* Submitting Overlay */
+        .submitting-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .submitting-overlay.active {
+            display: flex;
+        }
+        
+        .submitting-content {
+            background: white;
+            padding: 50px 70px;
+            border-radius: 2px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e8ecef;
+            border-top-color: #2d5f5d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .submitting-content h3 {
+            font-size: 22px;
+            color: #1a2332;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .submitting-content p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+            
+            .header {
+                padding: 35px 25px;
+            }
+            
+            .header h1 {
+                font-size: 26px;
+            }
+            
+            .info-card {
+                padding: 25px 20px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 25px 20px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                padding: 0 20px 25px;
+            }
+            
+            .nav-buttons .btn {
+                width: 100%;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .top-bar-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="logo-area">
+                <img src="https://noondalton.com/wp-content/uploads/2021/12/nd-logo-blue-globe-75h.png" alt="Noon Dalton">
+            </div>
+            <div class="timer-badge" id="topTimer" style="display: none;">
+                Time: <span id="topTimerDisplay">00:00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Start Screen -->
+        <div class="screen active" id="startScreen">
+            <div class="header">
+                <h1>Aptitude Assessment</h1>
+                <div class="position">Senior Manager - Production/Operations</div>
+                <p>Evaluating critical thinking, problem-solving, and analytical capabilities</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Assessment Overview</h3>
+                <p style="color: #4a5568; margin-bottom: 25px; line-height: 1.7;">This assessment evaluates critical thinking, problem-solving, and analytical capabilities specific to managing creative production workflows and distributed teams at the senior management level.</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="label">Total Questions</div>
+                        <div class="value">20</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Total Time</div>
+                        <div class="value">30 mins</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Total Points</div>
+                        <div class="value">80</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Sections</div>
+                        <div class="value">4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>Test Sections</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="label">Numerical Reasoning</div>
+                        <div class="value">5 Qs</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Logical Reasoning</div>
+                        <div class="value">5 Qs</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Data Interpretation</div>
+                        <div class="value">5 Qs</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Problem-Solving</div>
+                        <div class="value">5 Qs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>Important Instructions</h3>
+                <ul class="instructions-list">
+                    <li>Each section is timed separately - manage your time wisely</li>
+                    <li>You can navigate between questions within a section using the question navigator</li>
+                    <li>Once you move to the next section, you cannot go back to previous sections</li>
+                    <li>Each question is worth <strong>4 points</strong> (80 points total)</li>
+                    <li>There is <strong>no negative marking</strong> - attempt all questions</li>
+                    <li>Ensure you have a stable internet connection before starting</li>
+                    <li>Your results will be submitted automatically upon completion</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Candidate Information</h3>
+                <form id="candidateForm" class="candidate-form">
+                    <div class="form-group">
+                        <label for="candidateName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="candidateName" name="candidate_name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="candidateEmail">Email Address <span class="required">*</span></label>
+                        <input type="email" id="candidateEmail" name="candidate_email" required placeholder="Enter your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="candidatePhone">Phone Number</label>
+                        <input type="tel" id="candidatePhone" name="candidate_phone" placeholder="Enter your phone number">
+                    </div>
+                </form>
+            </div>
+
+            <button class="btn btn-primary btn-start" onclick="startTest()">Begin Assessment →</button>
+        </div>
+
+        <!-- Test Screen -->
+        <div class="screen" id="testScreen">
+            <div class="section-header">
+                <div class="section-info">
+                    <div class="section-title" id="sectionTitle">Section 1: Numerical Reasoning</div>
+                    <div class="section-subtitle" id="sectionSubtitle">Questions 1-5</div>
+                </div>
+                <div class="timer-display" id="timer">
+                    <span id="timerDisplay">08:00</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">Question 1 of 20</span>
+                    <span id="progressPercent">5% Complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 5%"></div>
+                </div>
+            </div>
+            
+            <div class="question-nav" id="questionNav"></div>
+            
+            <div class="questions-container" id="questionsContainer"></div>
+            
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">← Previous</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submitting Overlay -->
+    <div class="submitting-overlay" id="submittingOverlay">
+        <div class="submitting-content">
+            <div class="spinner"></div>
+            <h3>Submitting Your Assessment</h3>
+            <p>Please wait while we process your responses...</p>
+        </div>
+    </div>
+
+    <script>
+        // Test Configuration
+        const sections = [
+            {
+                name: "Numerical Reasoning",
+                time: 480,
+                questions: [
+                    {
+                        id: 1,
+                        text: `Your team produces 240 product images per day with 4 photographers working 8-hour shifts. You need to increase output to 360 images daily. If each photographer maintains the same productivity rate, how many additional photographers do you need?`,
+                        options: ["1", "2", "3", "4"],
+                        correct: 1
+                    },
+                    {
+                        id: 2,
+                        text: `A retouching vendor charges £0.85 per image for orders under 500 images, £0.72 for 500-999 images, and £0.58 for 1,000+ images. You have three projects this month: Project A needs 380 images, Project B needs 290 images, and Project C needs 450 images. How much would you save by consolidating into one order versus three separate orders?`,
+                        options: ["£184.80", "£212.40", "£268.80", "£302.40"],
+                        correct: 2
+                    },
+                    {
+                        id: 3,
+                        text: `Your quality control data shows the following rejection rates by vendor over Q3:
+<table class="data-table">
+<tr><th>Vendor</th><th>Images Delivered</th><th>Rejection Rate</th></tr>
+<tr><td>Alpha Studio</td><td>2,400</td><td>4.5%</td></tr>
+<tr><td>Beta Creative</td><td>1,800</td><td>6.2%</td></tr>
+<tr><td>Gamma Digital</td><td>3,200</td><td>3.8%</td></tr>
+</table>
+If reworking each rejected image costs £12, which vendor had the highest total rework cost?`,
+                        options: ["Alpha Studio", "Beta Creative", "Gamma Digital", "All three had equal costs"],
+                        correct: 2
+                    },
+                    {
+                        id: 4,
+                        text: `You're allocating a £48,000 quarterly budget across three departments based on their output contribution: Photography (45%), Retouching (35%), and Quality Control (20%). Mid-quarter, you need to shift 15% of the Photography budget to Retouching due to increased outsourcing needs. What is Retouching's new quarterly allocation?`,
+                        options: ["£16,800", "£19,440", "£20,040", "£21,600"],
+                        correct: 2
+                    },
+                    {
+                        id: 5,
+                        text: `A production workflow has four sequential stages with the following completion times and error rates:
+<table class="data-table">
+<tr><th>Stage</th><th>Time (mins)</th><th>Error Rate</th></tr>
+<tr><td>Capture</td><td>12</td><td>2%</td></tr>
+<tr><td>Selection</td><td>8</td><td>5%</td></tr>
+<tr><td>Retouching</td><td>25</td><td>8%</td></tr>
+<tr><td>Final QC</td><td>6</td><td>1%</td></tr>
+</table>
+If you process 100 images through the complete workflow, approximately how many will require rework at some stage? (Assume errors are independent and each image can only have one error)`,
+                        options: ["12", "15", "16", "18"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "Logical Reasoning",
+                time: 420,
+                questions: [
+                    {
+                        id: 6,
+                        text: `Review the following production rules:
+<ul>
+<li>All urgent projects must be reviewed by a Senior Quality Specialist</li>
+<li>Projects over £10,000 require Director sign-off</li>
+<li>Seasonal campaigns are always classified as urgent</li>
+<li>Director sign-off automatically includes Senior Quality Specialist review</li>
+</ul>
+A Spring Campaign project valued at £8,500 comes in. Which statement is TRUE?`,
+                        options: [
+                            "It requires Director sign-off only",
+                            "It requires Senior Quality Specialist review but not Director sign-off",
+                            "It requires both Director sign-off and Senior Quality Specialist review",
+                            "It requires neither approval"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        id: 7,
+                        text: `Your team uses a project prioritization matrix:
+<table class="data-table">
+<tr><th>Priority Level</th><th>Criteria</th></tr>
+<tr><td>P1 - Critical</td><td>Client deadline within 48 hours OR revenue impact >£50K</td></tr>
+<tr><td>P2 - High</td><td>Client deadline within 1 week AND revenue impact >£20K</td></tr>
+<tr><td>P3 - Standard</td><td>All other projects</td></tr>
+</table>
+A project has a client deadline in 5 days with a revenue impact of £35,000. What is its priority level?`,
+                        options: ["P1 - Critical", "P2 - High", "P3 - Standard", "Cannot be determined"],
+                        correct: 1
+                    },
+                    {
+                        id: 8,
+                        text: `Examine the pattern in team productivity scores across four quarters:<br><br>
+<strong>Q1: 78 → Q2: 82 → Q3: 88 → Q4: ?</strong><br><br>
+The improvement rate increases by 2 points each quarter. What is the predicted Q4 score?`,
+                        options: ["92", "94", "96", "98"],
+                        correct: 2
+                    },
+                    {
+                        id: 9,
+                        text: `You're scheduling three vendors for a project. Consider these constraints:
+<ul>
+<li>Vendor A is only available Monday-Wednesday</li>
+<li>Vendor B cannot work on consecutive days</li>
+<li>Vendor C must work the day after Vendor A</li>
+<li>Each vendor works exactly one day</li>
+<li>The project runs Monday through Friday</li>
+</ul>
+If Vendor A works on Tuesday, which scheduling arrangement is valid?`,
+                        options: [
+                            "A: Tuesday, B: Monday, C: Wednesday",
+                            "A: Tuesday, B: Wednesday, C: Wednesday",
+                            "A: Tuesday, B: Thursday, C: Wednesday",
+                            "A: Tuesday, B: Monday, C: Thursday"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        id: 10,
+                        text: `A workflow automation follows this logic:
+<pre>IF (image_count > 100) AND (deadline < 3 days) THEN assign_priority = "Rush"
+IF (client_tier = "Premium") OR (assign_priority = "Rush") THEN notify_manager = TRUE
+IF (notify_manager = TRUE) AND (image_count > 200) THEN escalate_to_director = TRUE</pre>
+A Premium client submits 250 images with a 5-day deadline. What actions are triggered?`,
+                        options: [
+                            "Rush priority only",
+                            "Manager notification only",
+                            "Manager notification and Director escalation",
+                            "No actions triggered"
+                        ],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "Data Interpretation",
+                time: 480,
+                questions: [
+                    {
+                        id: 11,
+                        text: `<strong>Weekly Production Metrics - Week 42</strong>
+<table class="data-table">
+<tr><th>Team</th><th>Target</th><th>Actual</th><th>Quality Score</th><th>Avg Turnaround (hrs)</th></tr>
+<tr><td>London Studio</td><td>800</td><td>752</td><td>94%</td><td>18</td></tr>
+<tr><td>Mumbai Remote</td><td>1,200</td><td>1,344</td><td>89%</td><td>14</td></tr>
+<tr><td>Freelance Pool</td><td>600</td><td>588</td><td>91%</td><td>22</td></tr>
+<tr><td>In-house Retouch</td><td>400</td><td>412</td><td>97%</td><td>26</td></tr>
+</table>
+Which team demonstrated the best balance of meeting targets while maintaining quality above 92%?`,
+                        options: ["London Studio", "Mumbai Remote", "Freelance Pool", "In-house Retouch"],
+                        correct: 3
+                    },
+                    {
+                        id: 12,
+                        text: `Using the same data from Question 11:<br><br>
+If quality scores below 90% trigger a mandatory review process costing 2 additional hours per image, what is the effective turnaround time for Mumbai Remote?`,
+                        options: ["14 hours", "16 hours", "18.2 hours", "Cannot calculate without knowing reject volume"],
+                        correct: 3
+                    },
+                    {
+                        id: 13,
+                        text: `Using the same data from Question 11:<br><br>
+Management wants to increase total weekly output by 25% while maintaining an average quality score of 92% or higher. Based on current performance patterns, which approach is most viable?`,
+                        options: [
+                            "Increase Mumbai Remote's target by 650 images",
+                            "Double the Freelance Pool allocation",
+                            "Expand London Studio and In-house Retouch proportionally",
+                            "Add capacity to Mumbai Remote and In-house Retouch equally"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        id: 14,
+                        text: `<strong>Project: Summer Campaign 2025</strong>
+<table class="data-table">
+<tr><th>Phase</th><th>Planned Start</th><th>Planned End</th><th>Actual Start</th><th>Actual End</th><th>Dependencies</th></tr>
+<tr><td>Brief Approval</td><td>Day 1</td><td>Day 3</td><td>Day 1</td><td>Day 5</td><td>None</td></tr>
+<tr><td>Photography</td><td>Day 4</td><td>Day 10</td><td>Day 6</td><td>Day 14</td><td>Brief Approval</td></tr>
+<tr><td>Retouching</td><td>Day 11</td><td>Day 18</td><td>Day 15</td><td>?</td><td>Photography</td></tr>
+<tr><td>Final Review</td><td>Day 19</td><td>Day 21</td><td>?</td><td>?</td><td>Retouching</td></tr>
+<tr><td>Delivery</td><td>Day 22</td><td>Day 22</td><td>?</td><td>?</td><td>Final Review</td></tr>
+</table>
+If Retouching maintains its planned duration and Final Review is compressed by 1 day, what is the earliest possible delivery day?`,
+                        options: ["Day 24", "Day 25", "Day 26", "Day 27"],
+                        correct: 2
+                    },
+                    {
+                        id: 15,
+                        text: `Using the same project timeline from Question 14:<br><br>
+The original project had 3 days of buffer built in. How many buffer days remain if all subsequent phases maintain their planned durations?`,
+                        options: ["-1 (project is behind)", "0", "1", "2"],
+                        correct: 0
+                    }
+                ]
+            },
+            {
+                name: "Situational Problem-Solving",
+                time: 420,
+                questions: [
+                    {
+                        id: 16,
+                        text: `You discover that a key vendor has been delivering work 15% below the contracted quality standard for the past month. Your team has been manually correcting errors to meet client deadlines. What is your FIRST action?`,
+                        options: [
+                            "Immediately terminate the vendor contract and redistribute work",
+                            "Document the quality issues and schedule a formal review meeting with the vendor",
+                            "Reduce the vendor's workload by 50% while monitoring improvement",
+                            "Inform the client about the quality issues and negotiate extended timelines"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        id: 17,
+                        text: `Two team leads are in conflict. One prioritizes speed and volume, meeting all deadlines but with occasional quality issues. The other prioritizes quality but frequently requests deadline extensions. Both approaches are creating friction. What is the most effective resolution?`,
+                        options: [
+                            "Establish a single standard that both must follow, with consequences for non-compliance",
+                            "Separate their teams to work on different project types matching their strengths",
+                            "Facilitate a joint session to develop shared metrics balancing both speed and quality",
+                            "Promote the higher performer and have them mentor the other"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        id: 18,
+                        text: `A critical project management tool your team relies on will be unavailable for 48 hours due to emergency maintenance. You have three projects in active production. What approach minimizes disruption?`,
+                        options: [
+                            "Pause all projects until the system is restored",
+                            "Export current project data and manage via spreadsheets temporarily",
+                            "Shift all work to vendors who use different systems",
+                            "Request IT prioritize your team's access during the maintenance window"
+                        ],
+                        correct: 1
+                    },
+                    {
+                        id: 19,
+                        text: `Your department's budget is cut by 20% effective next quarter. Current allocation: 60% staffing, 25% vendor costs, 15% technology/tools. Which reallocation strategy best maintains operational capacity?`,
+                        options: [
+                            "Reduce all categories by 20% proportionally",
+                            "Cut vendor costs by 50% and absorb work with existing staff",
+                            "Reduce technology spending by 60% and maintain staffing levels",
+                            "Reduce staffing by 15% and vendor costs by 30%, preserve technology investment"
+                        ],
+                        correct: 3
+                    },
+                    {
+                        id: 20,
+                        text: `You're implementing a new AI-powered quality control system. Early results show it catches 40% more errors than manual review but has a 12% false positive rate (flagging acceptable work as errors). Your team is skeptical and resistant to adoption. How do you proceed?`,
+                        options: [
+                            "Mandate full adoption with a clear implementation date and training programme",
+                            "Run a parallel system for 30 days, using AI flags for review rather than rejection",
+                            "Delay implementation until the false positive rate drops below 5%",
+                            "Let team members opt-in voluntarily and share success stories to encourage adoption"
+                        ],
+                        correct: 1
+                    }
+                ]
+            }
+        ];
+
+        // State Variables
+        let currentSection = 0;
+        let currentQuestion = 0;
+        let answers = {};
+        let timerInterval;
+        let timeRemaining;
+        let testStartTime;
+        let sectionStartTimes = [];
+
+        // Initialize
+        function startTest() {
+            const name = document.getElementById('candidateName').value.trim();
+            const email = document.getElementById('candidateEmail').value.trim();
+            
+            if (!name || !email) {
+                alert('Please enter your name and email address to begin the assessment.');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            testStartTime = new Date().toISOString();
+            
+            document.getElementById('startScreen').classList.remove('active');
+            document.getElementById('testScreen').classList.add('active');
+            document.getElementById('topTimer').style.display = 'flex';
+            
+            loadSection();
+        }
+
+        function loadSection() {
+            const section = sections[currentSection];
+            
+            document.getElementById('sectionTitle').textContent = `Section ${currentSection + 1}: ${section.name}`;
+            document.getElementById('sectionSubtitle').textContent = `Questions ${currentSection * 5 + 1}-${(currentSection + 1) * 5}`;
+            
+            timeRemaining = section.time;
+            sectionStartTimes[currentSection] = new Date().toISOString();
+            updateTimer();
+            
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimer();
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    nextSection();
+                }
+            }, 1000);
+            
+            currentQuestion = 0;
+            buildQuestionNav();
+            renderQuestion();
+        }
+
+        function buildQuestionNav() {
+            const section = sections[currentSection];
+            let html = '';
+            
+            section.questions.forEach((q, index) => {
+                const qKey = `${currentSection}-${index}`;
+                const isAnswered = answers[qKey] !== undefined;
+                const isActive = index === currentQuestion;
+                
+                html += `<button class="question-nav-btn ${isActive ? 'active' : ''} ${isAnswered ? 'answered' : ''}" 
+                         onclick="goToQuestion(${index})">${q.id}</button>`;
+            });
+            
+            document.getElementById('questionNav').innerHTML = html;
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timerDisplay').textContent = display;
+            document.getElementById('topTimerDisplay').textContent = display;
+            
+            const timerBadge = document.getElementById('topTimer');
+            if (timeRemaining <= 60) {
+                timerBadge.classList.add('warning');
+            } else {
+                timerBadge.classList.remove('warning');
+            }
+        }
+
+        function renderQuestion() {
+            const section = sections[currentSection];
+            const question = section.questions[currentQuestion];
+            const qKey = `${currentSection}-${currentQuestion}`;
+            const globalQuestionNum = currentSection * 5 + currentQuestion + 1;
+            
+            let html = `
+                <div class="question">
+                    <div class="question-header">
+                        <span class="question-num">Question ${question.id}</span>
+                        <span class="question-points">4 points</span>
+                    </div>
+                    <div class="question-text">${question.text}</div>
+                    <div class="options">
+            `;
+            
+            question.options.forEach((option, index) => {
+                const isSelected = answers[qKey] === index;
+                const letter = String.fromCharCode(65 + index);
+                html += `
+                    <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${index})">
+                        <input type="radio" name="q${question.id}" ${isSelected ? 'checked' : ''}>
+                        <label><span class="option-letter">${letter})</span> ${option}</label>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div>`;
+            
+            document.getElementById('questionsContainer').innerHTML = html;
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            
+            const isLastQuestion = currentSection === sections.length - 1 && 
+                                   currentQuestion === section.questions.length - 1;
+            const isLastInSection = currentQuestion === section.questions.length - 1;
+            
+            if (isLastQuestion) {
+                document.getElementById('nextBtn').textContent = 'Submit Assessment';
+            } else if (isLastInSection) {
+                document.getElementById('nextBtn').textContent = 'Next Section →';
+            } else {
+                document.getElementById('nextBtn').textContent = 'Next →';
+            }
+            
+            const progress = ((globalQuestionNum) / 20) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            document.getElementById('progressText').textContent = `Question ${globalQuestionNum} of 20`;
+            document.getElementById('progressPercent').textContent = `${Math.round(progress)}% Complete`;
+            
+            buildQuestionNav();
+        }
+
+        function selectOption(index) {
+            const qKey = `${currentSection}-${currentQuestion}`;
+            answers[qKey] = index;
+            
+            document.querySelectorAll('.option').forEach((opt, i) => {
+                opt.classList.toggle('selected', i === index);
+                opt.querySelector('input').checked = i === index;
+            });
+            
+            buildQuestionNav();
+        }
+
+        function goToQuestion(index) {
+            currentQuestion = index;
+            renderQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const section = sections[currentSection];
+            
+            if (currentQuestion < section.questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                nextSection();
+            }
+        }
+
+        function nextSection() {
+            clearInterval(timerInterval);
+            
+            if (currentSection < sections.length - 1) {
+                currentSection++;
+                loadSection();
+            } else {
+                submitTest();
+            }
+        }
+
+        function submitTest() {
+            document.getElementById('submittingOverlay').classList.add('active');
+            
+            const submissionData = {
+                candidate_name: document.getElementById('candidateName').value.trim(),
+                candidate_email: document.getElementById('candidateEmail').value.trim(),
+                candidate_phone: document.getElementById('candidatePhone').value.trim(),
+                position: 'Senior Manager - Production/Operations',
+                test_start_time: testStartTime,
+                test_end_time: new Date().toISOString(),
+                answers: answers,
+                section_times: sectionStartTimes
+            };
+            
+            // Submit via webhook
+            fetch('https://n8n.srv983823.hstgr.cloud/webhook-test/senior-manager/aptitude-assessment-complete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submissionData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Assessment submitted successfully! Thank you for completing the evaluation.');
+                    window.location.reload();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your assessment. Please contact support.');
+                document.getElementById('submittingOverlay').classList.remove('active');
+            });
+        }
+
+        window.addEventListener('beforeunload', function(e) {
+            if (document.getElementById('testScreen').classList.contains('active')) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
